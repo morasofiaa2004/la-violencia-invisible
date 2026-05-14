@@ -3,71 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Violencia Invisible | Artes Multimediales 2</title>
-    <!-- Vinculamos el CSS que ya creaste -->
+    <title>La Violencia Invisible</title>
+    <!-- Aquí vinculamos el archivo CSS externo que ya tenés en el repo -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos rápidos para que ya se vea con onda */
-        body {
-            background-color: #000;
-            color: #39FF14; /* Verde Neón */
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        main {
-            text-align: center;
-            border: 1px solid #39FF14;
-            padding: 2rem;
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
-        }
-
-        nav {
-            margin-top: 20px;
-        }
-
-        button {
-            background: transparent;
-            color: #39FF14;
-            border: 1px solid #39FF14;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #39FF14;
-            color: #000;
-        }
-
-        #btn-salir {
-            position: relative; /* Para que después lo hagamos "huir" con JS */
-        }
-    </style>
 </head>
 <body>
 
-    <main>
+    <header>
         <h1>LA VIOLENCIA INVISIBLE</h1>
-        <p>[ ESTADO: DENTRO DE LA CAJA NEGRA ]</p>
-        <p>¿Qué querés hacer hoy?</p>
-        
-        <nav>
-            <button onclick="alert('Error: Vínculo no encontrado.')">CONECTAR</button>
-            <button id="btn-relax">RELAJARME</button>
-            <button id="btn-descubrir">DESCUBRIR</button>
-            <button id="btn-salir">SALIR</button>
-        </nav>
+        <p>Proyecto de Artes Multimediales 2</p>
+    </header>
+
+    <main>
+        <section id="contenedor-principal">
+            <h2>¿Qué querés ver hoy?</h2>
+            
+            <nav id="menu-opciones">
+                <button type="button" id="btn-conectar">CONECTAR</button>
+                <button type="button" id="btn-informarme">INFORMARME</button>
+                <button type="button" id="btn-relajarme">RELAJARME</button>
+                <button type="button" id="btn-descubrir">DESCUBRIR ALGO NUEVO</button>
+                <button type="button" id="btn-salir">SALIR</button>
+            </nav>
+        </section>
     </main>
 
-    <!-- Vinculamos el JS para la lógica futura -->
+    <footer>
+        <p>[ ESTADO: DENTRO DE LA CAJA NEGRA ]</p>
+    </footer
+
+    <!-- Aquí vinculamos el archivo JS externo para la lógica -->
     <script src="script.js"></script>
 </body>
 </html>
