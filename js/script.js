@@ -19,6 +19,14 @@ function crearBloque(contenedor, nivel) {
 
     bloque.classList.add("bloque");
 
+    // tamaños irregulares
+    bloque.style.flexGrow =
+        Math.floor(Math.random() * 4) + 1;
+
+    bloque.style.flexBasis =
+        Math.floor(Math.random() * 250 + 180) + "px";
+
+    // color random
     bloque.style.backgroundColor =
         colores[Math.floor(Math.random() * colores.length)];
 
@@ -44,15 +52,15 @@ function dividir(e) {
     const nivel =
         parseInt(bloque.dataset.nivel);
 
-    // límite de tamaño
+    // tamaño mínimo
     if (
-        bloque.offsetWidth < 260 ||
-        bloque.offsetHeight < 180
+        bloque.offsetWidth < 180 ||
+        bloque.offsetHeight < 140
     ) {
         return;
     }
 
-    // evita duplicar divisiones
+    // evita dividir dos veces
     if (bloque.dataset.dividido) return;
 
     bloque.dataset.dividido = true;
@@ -61,19 +69,18 @@ function dividir(e) {
 
     bloque.style.display = "flex";
 
-    // alterna según profundidad
-    if (nivel % 2 == 0) {
+    // dirección random
+    const vertical = Math.random() > 0.5;
 
-        // divide horizontalmente
-        bloque.style.flexDirection = "column";
+    bloque.style.flexDirection =
+        vertical ? "row" : "column";
 
-    } else {
+    // entre 2 y 3 viñetas
+    const cantidad =
+        Math.floor(Math.random() * 2) + 2;
 
-        // divide verticalmente
-        bloque.style.flexDirection = "row";
+    for (let i = 0; i < cantidad; i++) {
+
+        crearBloque(bloque, nivel + 1);
     }
-
-    // crea dos nuevas viñetas
-    crearBloque(bloque, nivel + 1);
-    crearBloque(bloque, nivel + 1);
 }
