@@ -1,39 +1,79 @@
 const pantalla = document.getElementById("pantalla");
 
-// bloque inicial
-crearBloque(pantalla);
+const colores = [
+    "#2b0000",
+    "#3d0000",
+    "#4a0404",
+    "#5c0808",
+    "#6e0b0b",
+    "#7f1010",
+    "#8b0505"
+];
 
-function crearBloque(contenedor) {
+// viñeta inicial
+crearBloque(pantalla, 0);
 
-  const bloque = document.createElement("div");
-  bloque.classList.add("bloque");
+function crearBloque(contenedor, nivel) {
 
-  bloque.innerText = "click";
+    const bloque = document.createElement("div");
 
-  contenedor.appendChild(bloque);
+    bloque.classList.add("bloque");
 
-  bloque.addEventListener("click", dividir);
+    bloque.style.backgroundColor =
+        colores[Math.floor(Math.random() * colores.length)];
+
+    bloque.dataset.nivel = nivel;
+
+    bloque.innerHTML = `
+        <div class="contenido">
+            click
+        </div>
+    `;
+
+    contenedor.appendChild(bloque);
+
+    bloque.addEventListener("click", dividir);
 }
 
 function dividir(e) {
 
-  e.stopPropagation();
+    e.stopPropagation();
 
-  const bloque = e.currentTarget;
+    const bloque = e.currentTarget;
 
-  // evita dividir infinitamente
-  if (bloque.dataset.dividido) return;
+    const nivel =
+        parseInt(bloque.dataset.nivel);
 
-  bloque.dataset.dividido = true;
+    // límite de tamaño
+    if (
+        bloque.offsetWidth < 260 ||
+        bloque.offsetHeight < 180
+    ) {
+        return;
+    }
 
-  bloque.innerHTML = "";
+    // evita duplicar divisiones
+    if (bloque.dataset.dividido) return;
 
-  // decide división horizontal o vertical
-  const vertical = Math.random() > 0.5;
+    bloque.dataset.dividido = true;
 
-  bloque.style.display = "flex";
-  bloque.style.flexDirection = vertical ? "row" : "column";
+    bloque.innerHTML = "";
 
-  crearBloque(bloque);
-  crearBloque(bloque);
+    bloque.style.display = "flex";
+
+    // alterna según profundidad
+    if (nivel % 2 == 0) {
+
+        // divide horizontalmente
+        bloque.style.flexDirection = "column";
+
+    } else {
+
+        // divide verticalmente
+        bloque.style.flexDirection = "row";
+    }
+
+    // crea dos nuevas viñetas
+    crearBloque(bloque, nivel + 1);
+    crearBloque(bloque, nivel + 1);
 }
