@@ -1,0 +1,43 @@
+body{
+    background-color:#df7db18a;
+     margin: 0;
+     padding: 0;
+}
+
+#contenedor {
+    display:flex;
+    justify-content:center;
+    padding-top:220px;
+}
+
+img{
+    width: 480px;
+    transition:0.3s;
+}
+
+img:hover{
+    transform:scale(1.1);
+}
+
+#bloque1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 30%;
+  height: 100%;
+
+  background: #8b0505;
+  border-right: 8px solid black; /*no figura el borde para dividir, es un tema de medidas*/
+}
+
+#bloque2 {
+  position: absolute;
+  top: 0;
+  left: 30%;
+
+  width: 70%;
+  height: 100%;
+
+  background: #8b0505;
+}
