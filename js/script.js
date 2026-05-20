@@ -1,86 +1,63 @@
-const pantalla = document.getElementById("pantalla");
+// crea la constante "violeta" y busca el div violeta del HTML
+const violeta = document.getElementById("violeta");
 
-const colores = [
-    "#2b0000",
-    "#3d0000",
-    "#4a0404",
-    "#5c0808",
-    "#6e0b0b",
-    "#7f1010",
-    "#8b0505"
-];
 
-// viñeta inicial
-crearBloque(pantalla, 0);
+// cuando hace click en violeta
+// ejecuta la función dividir
+violeta.addEventListener("click", dividir);
 
-function crearBloque(contenedor, nivel) {
 
-    const bloque = document.createElement("div");
 
-    bloque.classList.add("bloque");
+// FUNCIÓN QUE DIVIDE VIOLETA
+function dividir(event) {
 
-    // tamaños irregulares
-    bloque.style.flexGrow =
-        Math.floor(Math.random() * 4) + 1;
+    // evita propagación del click
+    event.stopPropagation();
 
-    bloque.style.flexBasis =
-        Math.floor(Math.random() * 250 + 180) + "px";
 
-    // color random
-    bloque.style.backgroundColor =
-        colores[Math.floor(Math.random() * colores.length)];
+    // evita que violeta vuelva a dividirse
+    violeta.removeEventListener("click", dividir);
 
-    bloque.dataset.nivel = nivel;
 
-    bloque.innerHTML = `
-        <div class="contenido">
-            click
-        </div>
+    // crea azul y verde
+    violeta.innerHTML = `
+
+        <div id="azul"></div>
+
+        <div id="verde"></div>
+
     `;
 
-    contenedor.appendChild(bloque);
 
-    bloque.addEventListener("click", dividir);
+    // busca verde
+    const verde = document.getElementById("verde");
+
+
+    // click en verde
+    verde.addEventListener("click", dividirVerde);
+
 }
 
-function dividir(e) {
 
-    e.stopPropagation();
 
-    const bloque = e.currentTarget;
+// FUNCIÓN QUE DIVIDE VERDE
+function dividirVerde(event) {
 
-    const nivel =
-        parseInt(bloque.dataset.nivel);
+    // evita propagación
+    event.stopPropagation();
 
-    // tamaño mínimo
-    if (
-        bloque.offsetWidth < 180 ||
-        bloque.offsetHeight < 140
-    ) {
-        return;
-    }
 
-    // evita dividir dos veces
-    if (bloque.dataset.dividido) return;
+    // busca verde
+    const verde = document.getElementById("verde");
 
-    bloque.dataset.dividido = true;
 
-    bloque.innerHTML = "";
+    // divide verde en dos partes horizontales
+    verde.innerHTML = `
 
-    bloque.style.display = "flex";
+        <div class="miniVerde"></div>
 
-    // dirección random
-    const vertical = Math.random() > 0.5;
+        <div class="miniVerde"></div>
 
-    bloque.style.flexDirection =
-        vertical ? "row" : "column";
+    `;
 
-    // entre 2 y 3 viñetas
-    const cantidad =
-        Math.floor(Math.random() * 2) + 2;
-
-    for (let i = 0; i < cantidad; i++) {
-
-        crearBloque(bloque, nivel + 1);
-    }
 }

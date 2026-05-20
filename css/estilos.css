@@ -1,94 +1,119 @@
 body{
     background-color:#df7db18a;
-     margin: 0;
-     padding: 0;
+    margin:0;
+    padding:0;
 }
 
+
 #contenedor {
+
     display:flex;
+
     justify-content:center;
+
     padding-top:220px;
 }
 
+
 img{
-    width: 480px;
+
+    width:480px;
+
     transition:0.3s;
 }
 
+
 img:hover{
+
     transform:scale(1.1);
 }
 
-#bloque1 {
-  position: absolute;
-  top: 0;
-  left: 0;
 
-  width: 30%;
-  height: 100%;
+/* pantalla completa */
+#pantalla{
 
-  background: #8b0505;
-  border-right: 8px solid black; /*no figura el borde para dividir, es un tema de medidas*/
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
 }
 
-#bloque2 {
-  position: absolute;
-  top: 0;
-  left: 30%;
 
-  width: 70%;
-  height: 100%;
+/* bloque rojo fijo */
+#rojo{
 
-  background: #8b0505;
+    width:30%;
+
+    border:3px solid black;
+
+    box-sizing:border-box;
+
+    background-color:#8b0505;
 }
 
-#pantalla {
 
-    width: 100vw;
-    height: 100vh;
+/* bloque violeta */
+#violeta{
 
-    display: flex;
+    width:70%;
 
-    padding: 8px;
+    border:3px solid black;
 
-    gap: 8px;
+    box-sizing:border-box;
 
-    box-sizing: border-box;
+    display:flex;
+
+    cursor:pointer;
+
+    background-color:#c77dff;
 }
 
-.bloque {
 
-    flex: 1;
+/* bloque azul */
+#azul{
 
-    border: 5px solid black;
+    width:50%;
 
-    display: flex;
+    border:3px solid black;
 
-    overflow: hidden;
+    box-sizing:border-box;
 
-    position: relative;
+    background-color:#4361ee;
 
-    min-width: 220px;
-    min-height: 180px;
-
-    transition: 0.3s;
-
-    cursor: pointer;
-
-    gap: 8px;
-
-    padding: 8px;
-
-    box-sizing: border-box;
+    /* evita clicks */
+    pointer-events:none;
 }
 
-.contenido {
 
-    color: white;
+/* bloque verde */
+#verde{
 
-    font-family: Arial;
+    width:50%;
 
-    font-size: 18px;
+    border:3px solid black;
 
-    text-transform: uppercase;
+    box-sizing:border-box;
+
+    display:flex;
+
+    flex-direction:column;
+
+    cursor:pointer;
+
+    background-color:#38b000;
+}
+
+
+/* mini fragmentos verdes */
+.miniVerde{
+
+    flex:1;
+
+    border:3px solid black;
+
+    box-sizing:border-box;
+
+    background-color:#70e000;
 }
