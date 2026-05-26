@@ -1,119 +1,341 @@
 body{
+
     background-color:#df7db18a;
+    /* color de fondo general de toda la página */
+
     margin:0;
+    /* saca margen automático que agrega el navegador */
+
     padding:0;
+    /* saca padding automático */
+}
+
+:root{
+
+    --linea:#e3e3e3;
+
+    --borde-fino:inset 0 0 0 0.5px var(--linea);
+
+    --borde-sin-izquierda:inset -0.5px 0 0 var(--linea), inset 0 0.5px 0 var(--linea), inset 0 -0.5px 0 var(--linea);
+
+    --borde-sin-derecha:inset 0.5px 0 0 var(--linea), inset 0 0.5px 0 var(--linea), inset 0 -0.5px 0 var(--linea);
 }
 
 
-#contenedor {
+
+/* ---------------- */
+/* PRIMERA PANTALLA */
+/* ---------------- */
+
+#contenedor{
 
     display:flex;
+    /* activa flexbox */
+
+    /* flexbox siempre se pone en el elemento padre */
+    /* y ordena a sus hijos */
 
     justify-content:center;
+    /* centra horizontalmente */
 
     padding-top:220px;
+    /* baja el corazón desde arriba */
 }
 
 
 img{
 
     width:480px;
+    /* tamaño del corazón */
 
     transition:0.3s;
+    /* duración de la animación hover */
 }
 
 
 img:hover{
 
     transform:scale(1.1);
+    /* agranda la imagen cuando pasás el mouse */
 }
 
 
-/* pantalla completa */
+
+
+/* ---------------- */
+/* SEGUNDA PANTALLA */
+/* ---------------- */
+
 #pantalla{
 
     position:absolute;
+    /* permite ubicarlo ocupando toda la pantalla */
 
     width:100%;
+    /* ancho completo */
+
     height:100%;
+    /* alto completo */
 
     display:flex;
-}
-
-
-/* bloque rojo fijo */
-#rojo{
-
-    width:30%;
-
-    border:3px solid black;
-
-    box-sizing:border-box;
+    /* rojo y violeta quedan uno al lado del otro */
 
     background-color:#8b0505;
 }
 
 
-/* bloque violeta */
+
+
+/* ---------------- */
+/* BLOQUE ROJO */
+/* nunca cambia */
+/* ---------------- */
+
+#rojo{
+
+    width:30%;
+    /* ocupa 30% del ancho */
+
+    box-shadow:var(--borde-sin-izquierda);
+
+    box-sizing:border-box;
+    /* incluye el borde dentro del width */
+
+    /* sin border-box sería:
+       width + borde */
+
+    /* con border-box:
+       width ya incluye borde */
+
+    /* entonces rojo sigue ocupando exactamente 30%
+       aunque tenga borde */
+
+    background-color:#8b0505;
+}
+
+
+
+
+/* ---------------- */
+/* BLOQUE VIOLETA */
+/* primer bloque clickeable */
+/* ---------------- */
+
 #violeta{
 
     width:70%;
+    /* ocupa el resto del ancho */
 
-    border:3px solid black;
+    box-shadow:var(--borde-sin-derecha);
 
     box-sizing:border-box;
 
     display:flex;
 
-    cursor:pointer;
+    /* flex se pone en el padre */
 
-    background-color:#c77dff;
+    /* porque azul y verde viven adentro de violeta */
+
+    /* violeta = contenedor */
+
+    /* azul + verde = hijos */
+
+    /* entonces violeta organiza a azul y verde */
+
+    cursor:pointer;
+    /* cambia cursor a manito */
+
+    background-color:#6f0303;
 }
 
 
-/* bloque azul */
+
+
+/* ---------------- */
+/* AZUL */
+/* ---------------- */
+
 #azul{
 
     width:50%;
+    /* ocupa la mitad del violeta */
 
-    border:3px solid black;
+    box-shadow:var(--borde-fino);
 
     box-sizing:border-box;
 
-    background-color:#4361ee;
-
-    /* evita clicks */
-    pointer-events:none;
+    background-color:#4a0202;
 }
 
 
-/* bloque verde */
+
+
+/* ---------------- */
+/* VERDE */
+/* ---------------- */
+
 #verde{
 
     width:50%;
+    /* comparte el espacio con azul */
 
-    border:3px solid black;
+    box-shadow:var(--borde-fino);
 
     box-sizing:border-box;
 
     display:flex;
 
     flex-direction:column;
+    /* column = apila hijos verticalmente */
+
+    /* por eso los miniVerde
+       quedan uno arriba del otro */
 
     cursor:pointer;
 
-    background-color:#38b000;
+    background-color:#a30a0a;
 }
 
 
-/* mini fragmentos verdes */
+
+
+/* ---------------- */
+/* MINI VERDES */
+/* ---------------- */
+
 .miniVerde{
 
     flex:1;
 
-    border:3px solid black;
+    /* flex:1 reparte el espacio disponible */
+
+    /* como hay dos miniVerde */
+
+    /* ambos ocupan el mismo alto */
+
+    /* uno arriba y otro abajo */
+
+    box-shadow:var(--borde-fino);
 
     box-sizing:border-box;
 
-    background-color:#70e000;
+    background-color:#7a0404;
+
+    display:flex;
+    /* necesario para ordenar cuadrados internos */
+
+    flex-wrap:wrap;
+
+    /* wrap = si no entran en una fila */
+
+    /* bajan a la fila siguiente */
+
+    /* sin wrap:
+       □ □ □ □ */
+
+    /* con wrap:
+       □ □
+       □ □ */
+
+    /* eso arma el 2x2 */
+
+    cursor:pointer;
+}
+
+
+
+
+/* ---------------- */
+/* CUADRADOS VERDES */
+/* ---------------- */
+
+.cuadradoVerde{
+
+    width:50%;
+    /* mitad del ancho */
+
+    height:50%;
+    /* mitad del alto */
+
+    box-shadow:var(--borde-fino);
+
+    box-sizing:border-box;
+
+    background-color:#5c0202;
+}
+
+
+
+
+/* ---------------- */
+/* DIVISIÓN DEL AZUL */
+/* ---------------- */
+
+.azulGrande{
+
+    height:70%;
+    /* bloque superior más grande */
+
+    box-shadow:var(--borde-fino);
+
+    box-sizing:border-box;
+
+    background-color:#2b0000;
+}
+
+
+.azulChico{
+
+    height:30%;
+    /* ocupa menos espacio abajo */
+
+    box-shadow:var(--borde-fino);
+
+    box-sizing:border-box;
+
+    background-color:#9b1111;
+
+    display:flex;
+    /* necesario para que los hijos
+       queden uno al lado del otro */
+}
+
+/* ---------------- */
+/* FRAGMENTOS DEL AZUL GRANDE */
+/* ---------------- */
+
+.miniAzul{
+
+    height:50%;
+    /* mitad del alto */
+
+    box-shadow:var(--borde-fino);
+
+    box-sizing:border-box;
+
+    background-color:#3a0101;
+}
+
+/* ---------------- */
+/* FRAGMENTOS DEL AZUL CHICO */
+/* ---------------- */
+
+.miniAzulChico{
+
+    width:50%;
+
+    height:100%;
+
+    box-shadow:var(--borde-fino);
+
+    box-sizing:border-box;
+
+    background-color:#b31b1b;
+}
+
+#violeta > :last-child,
+#violeta > :last-child > .miniVerde,
+#violeta > :last-child > .miniVerde > .cuadradoVerde:nth-child(even){
+
+    box-shadow:var(--borde-sin-derecha);
 }
