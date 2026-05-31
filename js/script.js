@@ -1,15 +1,38 @@
 /* ---------------- */
+/* PANTALLA DE INICIO */
+/* ---------------- */
+
+const texto = document.getElementById("texto");
+
+if(texto){
+
+    /* estamos en index.html */
+
+    texto.textContent = "Te vi en línea pero no estabas ahí.";
+
+    texto.addEventListener("click", function(){
+
+        window.location.href = "pantalla2.html";
+
+    });
+
+}
+
+
+
+/* ---------------- */
 /* BLOQUE INICIAL */
 /* ---------------- */
 
-
-/* busca el div violeta dentro del HTML */
 const violeta = document.getElementById("violeta");
 
+if(violeta){
 
-/* agrega escucha de click */
-/* si hacés click llama a dividir() */
-violeta.addEventListener("click", dividir);
+    /* agrega escucha de click */
+    /* si hacés click llama a dividir() */
+    violeta.addEventListener("click", dividir);
+
+}
 
 
 

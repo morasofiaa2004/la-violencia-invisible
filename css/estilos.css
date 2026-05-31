@@ -1,53 +1,48 @@
+/* ---------------- */
+/* PANTALLA DE INICIO */
+/* ---------------- */
+
+#inicio{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    background-color:#6f0303;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:flex-end;
+}
+
+
+#texto{
+
+    color:white;
+
+    font-family:monospace;
+
+    font-size:20px;
+
+    padding:40px;
+
+    cursor:pointer;
+}
+
+
+
 body{
 
     background-color:#df7db18a;
-    /* color de fondo general de toda la página */
 
     margin:0;
-    /* saca margen automático que agrega el navegador */
 
     padding:0;
-    /* saca padding automático */
 }
-
-/* ---------------- */
-/* PRIMERA PANTALLA */
-/* ---------------- */
-
-#contenedor{
-
-    display:flex;
-    /* activa flexbox */
-
-    /* flexbox siempre se pone en el elemento padre */
-    /* y ordena a sus hijos */
-
-    justify-content:center;
-    /* centra horizontalmente */
-
-    padding-top:220px;
-    /* baja el corazón desde arriba */
-}
-
-
-#contenedor img{
-
-    width:480px;
-    /* tamaño del corazón */
-
-    transition:0.3s;
-    /* duración de la animación hover */
-}
-
-
-#contenedor img:hover{
-
-    transform:scale(1.1);
-    /* agranda la imagen cuando pasás el mouse */
-}
-
-
-
 
 /* ---------------- */
 /* SEGUNDA PANTALLA */
@@ -110,28 +105,32 @@ body{
 
     position:absolute;
 
+    z-index:2;
+
     right:24px;
 
     bottom:24px;
 
-    width:62%;
+    width:70%;
 
     height:auto;
 
     display:block;
 }
 
-.foto-pareja{
+.foto-cables{
 
     position:absolute;
 
-    top:24px;
+    top:0;
 
-    left:24px;
+    left:0;
 
-    width:56%;
+    width:100%;
 
-    height:auto;
+    height:100%;
+
+    object-fit:cover;
 
     display:block;
 }
