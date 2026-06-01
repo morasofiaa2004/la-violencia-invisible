@@ -38,7 +38,7 @@ body{
 
     font-family:monospace;
 
-    font-size:20px;
+    font-size:16px;
 
     padding:40px;
 
@@ -102,7 +102,7 @@ body{
     overflow:hidden;
 }
 
-#escribiendo{
+#conectado{
 
     position:absolute;
 
@@ -114,9 +114,33 @@ body{
 
     font-family:monospace;
 
-    font-size:20px;
+    font-size:16px;
 
     z-index:3;
+}
+
+#escribiendo{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%, -50%);
+
+    color:white;
+
+    font-family:monospace;
+
+    font-size:16px;
+
+    z-index:3;
+}
+
+#escribiendo.oculto{
+
+    display:none;
 }
 
 #escribiendo span{
@@ -192,6 +216,8 @@ body{
 /* ---------------- */
 
 #violeta{
+
+    position:relative;
 
     width:70%;
     /* ocupa el resto del ancho */

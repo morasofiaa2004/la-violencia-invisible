@@ -6,7 +6,7 @@ const texto = document.getElementById("texto");
 
 if(texto){
 
-    texto.textContent = "Te vi en línea pero no estabas ahí.";
+    texto.textContent = "Había un reflejo en la habitación";
 
     texto.addEventListener("click", function(){
 
@@ -37,8 +37,10 @@ if(violeta){
 
     const escribiendo = document.getElementById("escribiendo");
 
+    const conectado = document.getElementById("conectado");
 
-    if(cama && rojo && cables){
+
+    if(cama && rojo && cables && escribiendo && conectado){
 
         cama.addEventListener("click", function(event){
 
@@ -46,7 +48,7 @@ if(violeta){
 
             rojo.style.width = "30%";
 
-            escribiendo.style.display = "none";
+            conectado.style.display = "none";
 
             cama.style.width = "70%";
 
@@ -73,6 +75,8 @@ if(violeta){
             cables.style.transform = "rotate(0deg)";
 
             violeta.classList.remove("oculto");
+
+            escribiendo.classList.remove("oculto");
 
         });
     }
