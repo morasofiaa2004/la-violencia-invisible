@@ -1,3 +1,15 @@
+body{
+
+    background-color:#df7db18a;
+    /* color de fondo general de toda la página */
+
+    margin:0;
+    /* saca margen automático que agrega el navegador */
+
+    padding:0;
+    /* saca padding automático */
+}
+
 /* ---------------- */
 /* PANTALLA DE INICIO */
 /* ---------------- */
@@ -33,17 +45,6 @@
     cursor:pointer;
 }
 
-
-
-body{
-
-    background-color:#df7db18a;
-
-    margin:0;
-
-    padding:0;
-}
-
 /* ---------------- */
 /* SEGUNDA PANTALLA */
 /* ---------------- */
@@ -77,8 +78,8 @@ body{
 
     position:relative;
 
-    width:30%;
-    /* ocupa 30% del ancho */
+    width:100%;
+    /* empieza ocupando toda la pantalla */
 
     border:1px solid #e3e3e3;
 
@@ -101,21 +102,64 @@ body{
     overflow:hidden;
 }
 
+#escribiendo{
+
+    position:absolute;
+
+    top:24px;
+
+    right:24px;
+
+    color:white;
+
+    font-family:monospace;
+
+    font-size:20px;
+
+    z-index:3;
+}
+
+#escribiendo span{
+
+    animation:punto 1.2s infinite;
+}
+
+#escribiendo span:nth-child(2){
+
+    animation-delay:0.2s;
+}
+
+#escribiendo span:nth-child(3){
+
+    animation-delay:0.4s;
+}
+
+@keyframes punto{
+
+    0%{opacity:0;}
+
+    50%{opacity:1;}
+
+    100%{opacity:0;}
+}
+
 .foto-cama{
 
     position:absolute;
 
     z-index:2;
 
-    right:24px;
+    right:calc(70% + 24px);
 
     bottom:24px;
 
-    width:70%;
+    width:21%;
 
     height:auto;
 
     display:block;
+
+    cursor:pointer;
 }
 
 .foto-cables{
@@ -132,7 +176,11 @@ body{
 
     object-fit:cover;
 
-    display:block;
+    transform:rotate(0deg);
+
+    z-index:1;
+
+    display:none;
 }
 
 
@@ -170,6 +218,12 @@ body{
     /* cambia cursor a manito */
 
     background-color:#6f0303;
+}
+
+
+#violeta.oculto{
+
+    display:none;
 }
 
 

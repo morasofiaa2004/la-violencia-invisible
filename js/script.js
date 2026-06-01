@@ -6,8 +6,6 @@ const texto = document.getElementById("texto");
 
 if(texto){
 
-    /* estamos en index.html */
-
     texto.textContent = "Te vi en línea pero no estabas ahí.";
 
     texto.addEventListener("click", function(){
@@ -24,15 +22,67 @@ if(texto){
 /* BLOQUE INICIAL */
 /* ---------------- */
 
+
+/* busca el div violeta dentro del HTML */
 const violeta = document.getElementById("violeta");
 
+
 if(violeta){
+
+    const rojo = document.getElementById("rojo");
+
+    const cama = document.querySelector(".foto-cama");
+
+    const cables = document.querySelector(".foto-cables");
+
+    const escribiendo = document.getElementById("escribiendo");
+
+
+    if(cama && rojo && cables){
+
+        cama.addEventListener("click", function(event){
+
+            event.stopPropagation();
+
+            rojo.style.width = "30%";
+
+            escribiendo.style.display = "none";
+
+            cama.style.width = "70%";
+
+            cama.style.right = "24px";
+
+            cama.style.left = "auto";
+
+            cama.style.bottom = "24px";
+
+            cama.style.top = "auto";
+
+            cables.style.width = "100%";
+
+            cables.style.display = "block";
+
+            cables.style.top = "0";
+
+            cables.style.left = "0";
+
+            cables.style.height = "100%";
+
+            cables.style.objectFit = "cover";
+
+            cables.style.transform = "rotate(0deg)";
+
+            violeta.classList.remove("oculto");
+
+        });
+    }
+
 
     /* agrega escucha de click */
     /* si hacés click llama a dividir() */
     violeta.addEventListener("click", dividir);
-
 }
+
 
 
 
@@ -126,6 +176,7 @@ function dividir(event){
     /* agrega click a ambos */
 
 }
+
 
 
 
