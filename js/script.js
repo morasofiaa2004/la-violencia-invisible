@@ -28,6 +28,8 @@ const violeta = document.getElementById("violeta");
 
 let pasoAzul = 0;
 
+let pasoVerde = 0;
+
 
 if(violeta){
 
@@ -155,7 +157,7 @@ function dividir(event){
 
         <div id="azul"></div>
 
-        <div id="verde">
+        <div id="verde" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
             <img class="foto-luz" src="imagenes/luz.png" alt="luz">
         </div>
 
@@ -181,7 +183,7 @@ function dividir(event){
 
     azul.addEventListener("click", cambiarTextoAzul);
 
-    verde.addEventListener("click", dividirVerde);
+    verde.addEventListener("click", cambiarTextoVerde);
 
     /* agrega click a ambos */
 
@@ -213,6 +215,57 @@ function cambiarTextoAzul(event){
         dividirAzul(event);
 
     }
+
+}
+
+
+
+function cambiarTextoVerde(event){
+
+    event.stopPropagation();
+
+    const verde = event.currentTarget;
+
+    pasoVerde++;
+
+    if(pasoVerde === 1){
+
+        const luz = verde.querySelector(".foto-luz");
+
+        if(luz){
+            luz.remove();
+        }
+
+        verde.textContent = "me gustaba cuando aparecías";
+
+        verde.style.alignItems = "center";
+
+        verde.style.justifyContent = "center";
+
+        verde.style.textAlign = "center";
+
+        verde.style.color = "white";
+
+        verde.style.fontFamily = "monospace";
+
+        verde.style.fontSize = "19px";
+
+    }
+    else if(pasoVerde === 2){
+
+        verde.textContent = "tu nombre todavía hacía algo";
+
+    }
+    else{
+
+        verde.removeEventListener("click", cambiarTextoVerde);
+
+        verde.removeAttribute("style");
+
+        dividirVerde(event);
+
+    }
+
 }
 
 
