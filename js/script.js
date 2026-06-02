@@ -30,6 +30,8 @@ let pasoAzul = 0;
 
 let pasoVerde = 0;
 
+let pasoAzulGrande = 0;
+
 
 if(violeta){
 
@@ -270,6 +272,107 @@ function cambiarTextoVerde(event){
 
 
 
+function cambiarTextoAzulGrande(event){
+
+    event.stopPropagation();
+
+    const azulGrande = event.currentTarget;
+
+    pasoAzulGrande++;
+
+    if(pasoAzulGrande === 1){
+
+        azulGrande.textContent = "";
+
+        azulGrande.style.alignItems = "center";
+
+        azulGrande.style.justifyContent = "center";
+
+        azulGrande.style.backgroundColor = "#2e0202";
+
+        const img = document.createElement("img");
+
+        img.src = "imagenes/perfil.png";
+
+        img.alt = "perfil";
+
+        img.className = "foto-perfil";
+
+        azulGrande.appendChild(img);
+
+    }
+    else{
+
+        azulGrande.removeEventListener("click", cambiarTextoAzulGrande);
+
+        azulGrande.removeAttribute("style");
+
+        azulGrande.style.backgroundColor = "#2e0202";
+
+        azulGrande.innerHTML = `
+
+            <div class="miniAzul"></div>
+
+            <div class="miniAzul"></div>
+
+        `;
+
+        const minis = azulGrande.querySelectorAll(".miniAzul");
+
+        minis[0].textContent = "no sé si eras vos";
+
+        minis[1].textContent = "¿o solo era un recuerdo?";
+
+        function configurarMini(mini, primerTexto, segundoTexto){
+
+            mini.style.color = "white";
+
+            mini.style.fontFamily = "monospace";
+
+            mini.style.fontSize = "16px";
+
+            mini.style.display = "flex";
+
+            mini.style.alignItems = "center";
+
+            mini.style.justifyContent = "center";
+
+            mini.style.textAlign = "center";
+
+            mini.style.padding = "20px";
+
+            mini.style.boxSizing = "border-box";
+
+            mini.style.backgroundColor = "#2e0202";
+
+            let paso = 0;
+
+            mini.addEventListener("click", function(e){
+
+                e.stopPropagation();
+
+                paso++;
+
+                if(paso === 1){
+
+                    mini.textContent = segundoTexto;
+
+                }
+
+            });
+
+        }
+
+        configurarMini(minis[0], "no sé si eras vos", "o lo que quedaba");
+
+        configurarMini(minis[1], "¿o solo era un recuerdo?", "¿o prueba?");
+
+    }
+
+}
+
+
+
 
 
 /* ---------------- */
@@ -302,7 +405,27 @@ function dividirAzul(event){
 
 
     /* agrega click */
-    azulGrande.addEventListener("click", dividirAzulGrande);
+    azulGrande.textContent = "pasé tu foto con el dedo";
+
+    azulGrande.style.alignItems = "center";
+
+    azulGrande.style.justifyContent = "center";
+
+    azulGrande.style.textAlign = "center";
+
+    azulGrande.style.color = "white";
+
+    azulGrande.style.fontFamily = "monospace";
+
+    azulGrande.style.fontSize = "19px";
+
+    azulGrande.style.paddingTop = "60px";
+
+    azulGrande.style.boxSizing = "border-box";
+
+    azulGrande.style.backgroundColor = "#2e0202";
+
+    azulGrande.addEventListener("click", cambiarTextoAzulGrande);
     
     const azulChico = azul.querySelector(".azulChico");
     
