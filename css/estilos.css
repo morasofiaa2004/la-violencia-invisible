@@ -116,6 +116,8 @@ body{
 
     font-size:16px;
 
+    cursor:pointer;
+
     z-index:3;
 }
 
@@ -183,7 +185,6 @@ body{
 
     display:block;
 
-    cursor:pointer;
 }
 
 .foto-cables{
@@ -269,6 +270,20 @@ body{
     box-sizing:border-box;
 
     background-color:#4a0202;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-family:monospace;
+
+    font-size:16px;
+
+    cursor:pointer;
 }
 
 
@@ -279,6 +294,8 @@ body{
 /* ---------------- */
 
 #verde{
+
+    position:relative;
 
     width:50%;
     /* comparte el espacio con azul */
@@ -300,6 +317,34 @@ body{
     cursor:pointer;
 
     background-color:#a30a0a;
+}
+
+.foto-luz{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%, -50%);
+
+    width:28%;
+
+    height:auto;
+
+    display:block;
+
+    pointer-events:none;
+
+    animation:parpadeo 1.5s infinite;
+}
+
+@keyframes parpadeo{
+
+    0%,100%{opacity:1;}
+
+    50%{opacity:0.3;}
 }
 
 

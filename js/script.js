@@ -26,6 +26,8 @@ if(texto){
 /* busca el div violeta dentro del HTML */
 const violeta = document.getElementById("violeta");
 
+let pasoAzul = 0;
+
 
 if(violeta){
 
@@ -42,7 +44,7 @@ if(violeta){
 
     if(cama && rojo && cables && escribiendo && conectado){
 
-        cama.addEventListener("click", function(event){
+        conectado.addEventListener("click", function(event){
 
             event.stopPropagation();
 
@@ -153,7 +155,9 @@ function dividir(event){
 
         <div id="azul"></div>
 
-        <div id="verde"></div>
+        <div id="verde">
+            <img class="foto-luz" src="imagenes/luz.png" alt="luz">
+        </div>
 
     `;
 
@@ -173,12 +177,42 @@ function dividir(event){
     /* busca los nuevos divs recién creados */
 
 
-    azul.addEventListener("click", dividirAzul);
+    azul.textContent = "La luz llegó antes";
+
+    azul.addEventListener("click", cambiarTextoAzul);
 
     verde.addEventListener("click", dividirVerde);
 
     /* agrega click a ambos */
 
+}
+
+
+function cambiarTextoAzul(event){
+
+    event.stopPropagation();
+
+    const azul = event.currentTarget;
+
+    pasoAzul++;
+
+    if(pasoAzul === 1){
+
+        azul.textContent = "antes que tu voz";
+
+    }
+    else if(pasoAzul === 2){
+
+        azul.textContent = "antes que vos";
+
+    }
+    else{
+
+        azul.removeEventListener("click", cambiarTextoAzul);
+
+        dividirAzul(event);
+
+    }
 }
 
 
@@ -194,6 +228,8 @@ function dividirAzul(event){
     event.stopPropagation();
 
     const azul = document.getElementById("azul");
+
+    azul.style.display = "block";
 
 
     azul.innerHTML = `
