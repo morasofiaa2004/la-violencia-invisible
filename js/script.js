@@ -48,6 +48,14 @@ if(violeta){
 
     if(cama && rojo && cables && escribiendo && conectado){
 
+        cama.addEventListener("click", function(event){
+
+            event.stopPropagation();
+
+            window.location.href = "pantalla3.html";
+
+        });
+
         conectado.addEventListener("click", function(event){
 
             event.stopPropagation();
@@ -293,35 +301,35 @@ function cambiarTextoVerde(event){
 
         const cuadritos = verde.querySelectorAll(".miniCuadrito");
 
-        configurarCuadrito(cuadritos[0], [
+        cuadritos[1].textContent = "";
+        cuadritos[2].textContent = "";
 
-            "¿vamos a hablar?",
-
-            "lo escribiste",
-
-            "lo borraste",
-
-            "¿lo imaginé?"
-
-        ]);
-
-        configurarCuadrito(cuadritos[1], [
-
-            "todavía somos?",
-
-            "podemos ser",
-
-            "aun"
-
-        ]);
-
-        configurarCuadrito(cuadritos[2], [
-
-            "hola?",
-
-            "EN LÍNEA"
-
-        ]);
+        let pasoA = 0;
+        const frasesA = ["¿vamos a hablar?", "lo escribiste", "lo borraste", "¿lo imaginé?"];
+        cuadritos[0].addEventListener("click", function(e){
+            e.stopPropagation();
+            pasoA++;
+            if(pasoA < frasesA.length){
+                cuadritos[0].textContent = frasesA[pasoA];
+            }
+            else if(pasoA === frasesA.length){
+                cuadritos[0].textContent = "";
+                cuadritos[0].removeEventListener("click", arguments.callee);
+                cuadritos[1].textContent = "todavía somos?";
+                configurarCuadrito(cuadritos[1], [
+                    "todavía somos?",
+                    "podemos ser",
+                    "aun"
+                ]);
+            }
+            if(pasoA === 1){
+                cuadritos[2].textContent = "hola?";
+                configurarCuadrito(cuadritos[2], [
+                    "hola?",
+                    "EN LÍNEA"
+                ]);
+            }
+        });
 
         configurarCuadritoPaisaje(cuadritos[3], [
 
@@ -379,33 +387,29 @@ function cambiarTextoVerde(event){
                     ]);
 
                     // Configurar el bloque inferior
-                    let pasoMiniAbajo = 0;
-                    function miniAbajoHandler(e){
-                        e.stopPropagation();
-                        pasoMiniAbajo++;
-                        if(pasoMiniAbajo === 1){
-                            miniAbajo.textContent = "si antes quemaba";
-                        } else if(pasoMiniAbajo === 2){
-                            miniAbajo.textContent = "";
-                            miniAbajo.style.alignItems = "center";
-                            miniAbajo.style.justifyContent = "center";
-                            
-                            const img = document.createElement("img");
-                            img.src = "imagenes/fuego.png";
-                            img.alt = "fuego";
-                            img.className = "foto-fuego";
-                            // Apply color blending to match the background red (#7a0404)
-                            img.style.mixBlendMode = "multiply";
-                            img.style.opacity = "0.9";
-                            miniAbajo.appendChild(img);
-                            
-                            miniAbajo.removeEventListener("click", miniAbajoHandler);
-                        } else if(pasoMiniAbajo === 3){
-                            miniAbajo.textContent = "";
-                            miniAbajo.innerHTML = "";
-                            miniAbajo.removeEventListener("click", miniAbajoHandler);
+                        let pasoMiniAbajo = 0;
+                        function miniAbajoHandler(e){
+                            e.stopPropagation();
+                            pasoMiniAbajo++;
+                            if(pasoMiniAbajo === 1){
+                                miniAbajo.textContent = "si antes quemaba";
+                            } else if(pasoMiniAbajo === 2){
+                                miniAbajo.textContent = "";
+                                miniAbajo.style.alignItems = "center";
+                                miniAbajo.style.justifyContent = "center";
+                                miniAbajo.style.backgroundColor = "#8F0000";
+                                
+                                const img = document.createElement("img");
+                                img.src = "imagenes/fuego.png";
+                                img.alt = "fuego";
+                                img.className = "foto-fuego";
+                                miniAbajo.appendChild(img);
+                            } else if(pasoMiniAbajo === 3){
+                                miniAbajo.textContent = "";
+                                miniAbajo.innerHTML = "";
+                                miniAbajo.removeEventListener("click", miniAbajoHandler);
+                            }
                         }
-                    }
                     miniAbajo.addEventListener("click", miniAbajoHandler);
 
                 }
@@ -525,7 +529,7 @@ function cambiarTextoAzulGrande(event){
 
         azulGrande.style.justifyContent = "center";
 
-        azulGrande.style.backgroundColor = "#2e0202";
+        azulGrande.style.backgroundColor = "#320000";
 
         const img = document.createElement("img");
 
@@ -663,7 +667,7 @@ function dividirAzul(event){
 
     azulGrande.style.fontFamily = "monospace";
 
-    azulGrande.style.fontSize = "19px";
+    azulGrande.style.fontSize = "14px";
 
     azulGrande.style.paddingTop = "60px";
 
@@ -675,7 +679,66 @@ function dividirAzul(event){
     
     const azulChico = azul.querySelector(".azulChico");
     
-    azulChico.addEventListener("click", dividirAzulChico);
+    azulChico.textContent = "hablar era fácil";
+    azulChico.style.alignItems = "center";
+    azulChico.style.justifyContent = "center";
+    azulChico.style.textAlign = "center";
+    azulChico.style.color = "white";
+    azulChico.style.fontFamily = "monospace";
+    azulChico.style.fontSize = "16px";
+    azulChico.style.boxSizing = "border-box";
+
+    let pasoAzulChico = 0;
+    azulChico.addEventListener("click", function(e){
+        e.stopPropagation();
+        pasoAzulChico++;
+        if(pasoAzulChico === 1){
+            azulChico.textContent = "difícil era quedarse";
+        }
+        else if(pasoAzulChico === 2){
+            azulChico.removeEventListener("click", arguments.callee);
+            azulChico.innerHTML = `
+                <div class="miniAzulChico" id="escrituraChico"></div>
+                <div class="miniAzulChico" id="nuncaChico"></div>
+            `;
+            const escritura = document.getElementById("escrituraChico");
+            const nunca = document.getElementById("nuncaChico");
+
+            escritura.innerHTML = 'escribiendo<span class="puntos-escritura"><span>.</span><span>.</span><span>.</span></span>';
+            escritura.style.display = "flex";
+            escritura.style.alignItems = "center";
+            escritura.style.justifyContent = "center";
+
+            nunca.textContent = "nunca llegó";
+            nunca.style.display = "flex";
+            nunca.style.alignItems = "center";
+            nunca.style.justifyContent = "center";
+            nunca.style.textAlign = "center";
+
+            let pasoNunca = 0;
+            nunca.addEventListener("click", function(ev){
+                ev.stopPropagation();
+                pasoNunca++;
+                if(pasoNunca === 1){
+                    nunca.textContent = "solo la luz";
+                }
+                else if(pasoNunca === 2){
+                    nunca.textContent = "solo tu nombre";
+                }
+                else if(pasoNunca === 3){
+                    nunca.textContent = "todavía conectado";
+                }
+                else if(pasoNunca === 4){
+                    nunca.textContent = "";
+                    nunca.removeEventListener("click", arguments.callee);
+                }
+            });
+
+            setTimeout(function(){
+                escritura.innerHTML = '<span style="color:#888;font-style:italic;">eliminado</span>';
+            }, 5000);
+        }
+    });
 
 }
 

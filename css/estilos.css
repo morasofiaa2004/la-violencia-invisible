@@ -146,8 +146,27 @@ body{
 }
 
 #escribiendo span{
-
     animation:punto 1.2s infinite;
+}
+
+#escribiendo span:nth-child(2){
+    animation-delay:0.2s;
+}
+
+#escribiendo span:nth-child(3){
+    animation-delay:0.4s;
+}
+
+.puntos-escritura span{
+    animation:punto 1.2s infinite;
+}
+
+.puntos-escritura span:nth-child(2){
+    animation-delay:0.2s;
+}
+
+.puntos-escritura span:nth-child(3){
+    animation-delay:0.4s;
 }
 
 #escribiendo span:nth-child(2){
@@ -184,6 +203,8 @@ body{
     height:auto;
 
     display:block;
+
+    cursor:pointer;
 
 }
 
@@ -532,6 +553,13 @@ body{
     display:block;
     margin:0 auto;
     pointer-events:none;
+    animation:fuego 0.15s infinite alternate;
+}
+
+@keyframes fuego{
+    0%{opacity:0.4;}
+    50%{opacity:1;}
+    100%{opacity:0.6;}
 }
 
 
@@ -676,4 +704,206 @@ body{
 #violeta > :last-child > .miniVerde > .cuadradoVerde:nth-child(even){
 
     border-right:0;
+}
+
+/* ---------------- */
+/* PANTALLA 3 - CAMIONERO */
+/* ---------------- */
+
+#pantalla3{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    background-color:#6f0303;
+    overflow:hidden;
+}
+
+#columna-izquierda{
+    width:35%;
+    min-height:100%;
+    border-right:1px solid #e3e3e3;
+    box-sizing:border-box;
+    padding:40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background-color:#940101;
+    overflow-y:auto;
+}
+
+#columna-derecha{
+    width:65%;
+    min-height:100%;
+    padding:40px 60px;
+    box-sizing:border-box;
+    overflow-y:auto;
+    background-color:#6f0303;
+}
+
+#intro-camionero h2{
+    color:white;
+    font-family:monospace;
+    font-size:28px;
+    margin-bottom:20px;
+    letter-spacing:2px;
+    margin-top:60px;
+}
+
+#intro-camionero p{
+    color:#ccc;
+    font-family:monospace;
+    font-size:13px;
+    margin:5px 0;
+}
+
+#biografia{
+    margin-top:30px;
+}
+
+#biografia p{
+    color:#aaa;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.8;
+    margin:10px 0;
+}
+
+#album{
+    margin-top:40px;
+    padding-top:30px;
+    border-top:1px solid #555;
+}
+
+#album .label{
+    color:white;
+    font-family:monospace;
+    font-size:14px;
+    font-style:italic;
+}
+
+#album .year{
+    color:#888;
+    font-family:monospace;
+    font-size:12px;
+    margin-bottom:15px;
+}
+
+#album .tracklist{
+    color:#999;
+    font-family:monospace;
+    font-size:11px;
+    line-height:1.6;
+}
+
+#album .tracklist strong{
+    color:white;
+}
+
+.separator{
+    color:#555;
+    margin:0 5px;
+}
+
+#letra-container h3{
+    color:white;
+    font-family:monospace;
+    font-size:22px;
+    margin-bottom:20px;
+    letter-spacing:1px;
+}
+
+.titulo-grande{
+    font-size:48px !important;
+    letter-spacing:8px !important;
+    text-transform:uppercase;
+}
+
+.subtitulo{
+    color:#888;
+    font-family:monospace;
+    font-size:12px;
+    margin:5px 0;
+}
+
+#letra{
+    margin-bottom:40px;
+}
+
+.linea-con-interpretacion{
+    display:flex;
+    gap:30px;
+    margin-bottom:8px;
+    align-items:baseline;
+}
+
+.texto-cancion{
+    color:#ddd;
+    font-family:monospace;
+    font-size:14px;
+    line-height:1.8;
+    flex:1;
+}
+
+.interpretacion{
+    color:#666;
+    font-family:monospace;
+    font-size:11px;
+    font-style:italic;
+    flex:1;
+    text-align:right;
+}
+
+.texto-cancion.destacado{
+    color:white;
+    font-size:16px;
+    letter-spacing:2px;
+}
+
+p.blank{
+    height:15px;
+}
+
+.nota-gris{
+    color:#666;
+    font-family:monospace;
+    font-size:11px;
+    font-style:italic;
+    margin-bottom:25px;
+    padding-bottom:15px;
+    border-bottom:1px solid #444;
+}
+
+#fuente{
+    padding-top:30px;
+    border-top:1px solid #444;
+}
+
+#fuente p{
+    color:#666;
+    font-family:monospace;
+    font-size:11px;
+    font-style:italic;
+}
+
+#tomamos{
+    margin-top:40px;
+    padding-top:30px;
+    border-top:1px solid #555;
+}
+
+#tomamos h4{
+    color:white;
+    font-family:monospace;
+    font-size:14px;
+    margin-bottom:15px;
+    letter-spacing:1px;
+}
+
+#tomamos p{
+    color:#aaa;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.8;
+    margin:10px 0;
 }
