@@ -181,9 +181,10 @@ function dividir(event){
     /* busca los nuevos divs recién creados */
 
 
-    azul.textContent = "La luz llegó antes";
+        azul.textContent = "La luz llegó antes";
+        azul.style.fontSize = "19px";
 
-    azul.addEventListener("click", cambiarTextoAzul);
+        azul.addEventListener("click", cambiarTextoAzul);
 
     verde.addEventListener("click", cambiarTextoVerde);
 
@@ -200,16 +201,18 @@ function cambiarTextoAzul(event){
 
     pasoAzul++;
 
-    if(pasoAzul === 1){
+        if(pasoAzul === 1){
 
-        azul.textContent = "antes que tu voz";
+            azul.textContent = "antes que tu voz";
+            azul.style.fontSize = "19px";
 
-    }
-    else if(pasoAzul === 2){
+        }
+        else if(pasoAzul === 2){
 
-        azul.textContent = "antes que vos";
+            azul.textContent = "antes que vos";
+            azul.style.fontSize = "19px";
 
-    }
+        }
     else{
 
         azul.removeEventListener("click", cambiarTextoAzul);
@@ -264,9 +267,243 @@ function cambiarTextoVerde(event){
 
         verde.removeAttribute("style");
 
-        dividirVerde(event);
+        verde.style.flexDirection = "column";
+
+        verde.innerHTML = `
+
+            <div class="verdeMitad verdeArriba" id="verdeArriba">
+
+                <div class="verdeArribaCuatro">
+
+                    <div class="miniCuadrito">¿vamos a hablar?</div>
+
+                    <div class="miniCuadrito">todavía somos?</div>
+
+                    <div class="miniCuadrito">hola?</div>
+
+                    <div class="miniCuadrito">el paisaje fue hermoso</div>
+
+                </div>
+
+            </div>
+
+            <div class="verdeMitad verdeAbajo" id="verdeAbajo"></div>
+
+        `;
+
+        const cuadritos = verde.querySelectorAll(".miniCuadrito");
+
+        configurarCuadrito(cuadritos[0], [
+
+            "¿vamos a hablar?",
+
+            "lo escribiste",
+
+            "lo borraste",
+
+            "¿lo imaginé?"
+
+        ]);
+
+        configurarCuadrito(cuadritos[1], [
+
+            "todavía somos?",
+
+            "podemos ser",
+
+            "aun"
+
+        ]);
+
+        configurarCuadrito(cuadritos[2], [
+
+            "hola?",
+
+            "EN LÍNEA"
+
+        ]);
+
+        configurarCuadritoPaisaje(cuadritos[3], [
+
+            "el paisaje fue hermoso",
+
+            "subiste una foto",
+
+            "no estaba yo"
+
+        ]);
+
+        const verdeAbajo = document.getElementById("verdeAbajo");
+
+        if(verdeAbajo){
+
+            verdeAbajo.textContent = "igual llegó";
+
+            let pasoVerdeAbajo = 0;
+
+            function verdeAbajoHandler(e){
+
+                e.stopPropagation();
+
+                pasoVerdeAbajo++;
+
+                if(pasoVerdeAbajo === 1){
+
+                    verdeAbajo.textContent = "NO TU MENSAJE";
+
+                }
+
+                else if(pasoVerdeAbajo === 2){
+
+                    verdeAbajo.removeEventListener("click", verdeAbajoHandler);
+
+                    verdeAbajo.innerHTML = `
+
+                        <div class="miniVerdeDos" id="miniVerdeArriba">la espera</div>
+
+                        <div class="miniVerdeDos" id="miniVerdeAbajo">¿ahora no sentís nada?</div>
+
+                    `;
+
+                    const miniArriba = document.getElementById("miniVerdeArriba");
+                    const miniAbajo = document.getElementById("miniVerdeAbajo");
+
+                    configurarCuadrito(miniArriba, [
+
+                        "la espera",
+
+                        "la indiferencia",
+
+                        "el silencio"
+
+                    ]);
+
+                    // Configurar el bloque inferior
+                    let pasoMiniAbajo = 0;
+                    function miniAbajoHandler(e){
+                        e.stopPropagation();
+                        pasoMiniAbajo++;
+                        if(pasoMiniAbajo === 1){
+                            miniAbajo.textContent = "si antes quemaba";
+                        } else if(pasoMiniAbajo === 2){
+                            miniAbajo.textContent = "";
+                            miniAbajo.style.alignItems = "center";
+                            miniAbajo.style.justifyContent = "center";
+                            
+                            const img = document.createElement("img");
+                            img.src = "imagenes/fuego.png";
+                            img.alt = "fuego";
+                            img.className = "foto-fuego";
+                            // Apply color blending to match the background red (#7a0404)
+                            img.style.mixBlendMode = "multiply";
+                            img.style.opacity = "0.9";
+                            miniAbajo.appendChild(img);
+                            
+                            miniAbajo.removeEventListener("click", miniAbajoHandler);
+                        } else if(pasoMiniAbajo === 3){
+                            miniAbajo.textContent = "";
+                            miniAbajo.innerHTML = "";
+                            miniAbajo.removeEventListener("click", miniAbajoHandler);
+                        }
+                    }
+                    miniAbajo.addEventListener("click", miniAbajoHandler);
+
+                }
+
+            }
+
+            verdeAbajo.addEventListener("click", verdeAbajoHandler);
+
+        }
 
     }
+
+}
+
+
+
+function configurarCuadrito(cuadrito, frases){
+
+    let paso = 0;
+
+    function handler(e){
+
+        e.stopPropagation();
+
+        paso++;
+
+        if(paso < frases.length){
+
+            cuadrito.textContent = frases[paso];
+
+        }
+        else if(paso === frases.length){
+
+            cuadrito.textContent = "";
+
+            cuadrito.removeEventListener("click", handler);
+
+        }
+
+    }
+
+    cuadrito.addEventListener("click", handler);
+
+}
+
+
+
+function configurarCuadritoPaisaje(cuadrito, frases){
+
+    let paso = 0;
+
+    function handler(e){
+
+        e.stopPropagation();
+
+        paso++;
+
+        if(paso < frases.length){
+
+            cuadrito.textContent = frases[paso];
+
+        }
+
+        else if(paso === frases.length){
+
+            cuadrito.textContent = "";
+
+            cuadrito.style.alignItems = "center";
+
+            cuadrito.style.justifyContent = "center";
+
+            const img = document.createElement("img");
+
+            img.src = "imagenes/paisaje.png";
+
+            img.alt = "paisaje";
+
+            img.className = "foto-paisaje";
+
+            cuadrito.appendChild(img);
+
+            cuadrito.removeEventListener("click", handler);
+
+            cuadrito.addEventListener("click", function vaciar(e){
+
+                e.stopPropagation();
+
+                cuadrito.textContent = "";
+
+                cuadrito.removeEventListener("click", vaciar);
+
+            });
+
+        }
+
+    }
+
+    cuadrito.addEventListener("click", handler);
 
 }
 
@@ -323,7 +560,7 @@ function cambiarTextoAzulGrande(event){
 
         minis[1].textContent = "¿o solo era un recuerdo?";
 
-        function configurarMini(mini, primerTexto, segundoTexto){
+        function configurarMini(mini, segundoTexto){
 
             mini.style.color = "white";
 
@@ -347,7 +584,7 @@ function cambiarTextoAzulGrande(event){
 
             let paso = 0;
 
-            mini.addEventListener("click", function(e){
+            function handler(e){
 
                 e.stopPropagation();
 
@@ -358,14 +595,23 @@ function cambiarTextoAzulGrande(event){
                     mini.textContent = segundoTexto;
 
                 }
+                else if(paso === 2){
 
-            });
+                    mini.textContent = "";
+
+                    mini.removeEventListener("click", handler);
+
+                }
+
+            }
+
+            mini.addEventListener("click", handler);
 
         }
 
-        configurarMini(minis[0], "no sé si eras vos", "o lo que quedaba");
+        configurarMini(minis[0], "o lo que quedaba");
 
-        configurarMini(minis[1], "¿o solo era un recuerdo?", "¿o prueba?");
+        configurarMini(minis[1], "¿o prueba?");
 
     }
 
